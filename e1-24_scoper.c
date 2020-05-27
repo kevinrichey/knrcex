@@ -30,7 +30,7 @@ void eatstr(int endc)
 	}
 }
 
-int main(int argc, char *argv[])
+int main(int argc, char *argv[]) 
 {
 	context state = CX_NONE;
 
@@ -53,7 +53,6 @@ int main(int argc, char *argv[])
 			mismatch(line, c);
 		else if (c == ')' && *--top != '(')
 			mismatch(line, c);
-
 	}
 
 	if (*top == ' ' || *top == '\0')

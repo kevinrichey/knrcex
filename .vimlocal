@@ -1,26 +1,11 @@
 
-" C/C++ Code Standards
+" C Code Standards
 "======================
 "
-"## Formatting, Indentation
-"
-" - Indentation:               4 spaces (shiftwidth, tabstop)
-" - Line continuations:        2 spaces (half shiftwidth, cino=+.5s)
-" - Function return type:      0 spaces from margin (cino=t0)
-" - Unclosed parens:           align with first character ( cino=(0 )
-" 
-" - No line breaks.
-" - No line wrapping.
-
-set cindent expandtab! tabstop=4 shiftwidth=4 cino=+.5s,t0,(0
-set linebreak! wrap!
 
 " Navigation
 "=============
 
-set ignorecase                    " - Case insensitive search.
-set hlsearch                      " - Highlight search results.
-set foldenable foldmethod=syntax  " - Use syntax code folding.
 nnoremap <C-]> g<C-]>             " - C-] opens list if more than one match
 nmap <F2> :cn<CR>                 " - F2 = Next quickfix error
 nmap <S-F2> :cp<CR>               " - Shift-F2 = Previous quickfix error
@@ -50,5 +35,10 @@ nnoremap <F3>i :cscope find i @#<CR>|          " - i: Files #including this file
 nnoremap <F5>   :make<CR>|    " - F5: make all
 nnoremap <C-F5> :make run-test<CR>|   " - Ctrl-F5:  make test
 nnoremap <F9>   :exec('make break FILE=% LINE='.line('.'))<CR>|   " - F9: Debug and break at this line
+
+" C Snippets
+" ========================================
+
+nnoremap <Leader>main  :-1read $HOME/.vim/snippets/main.c<CR>jo
 
 " vim:ft=vim:
