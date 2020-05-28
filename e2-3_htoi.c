@@ -3,18 +3,19 @@
 
 #define MAX  100
 
-int htoi(char s[])
+unsigned int htoi(char s[])
 {
 	int d = 0;
 
 	if (s[0] == '0' && (s[1] == 'x' || s[1] == 'X')) {
-		for (int i = 2; s[i]; ++i)
-			if (isdigit(s[i]))
-				d = 16 * d + (s[i] - '0');
-			else if (s[i] >= 'a' && s[i] <= 'f')
-				d = 16 * d + (s[i] - 'a' + 10);
-			else if (s[i] >= 'A' && s[i] <= 'F')
-				d = 16 * d + (s[i] - 'A' + 10);
+		int c;
+		for (s += 2; c = *s, c != '\0'; ++s)
+			if (isdigit(c))
+				d = 16 * d + (c - '0');
+			else if (c >= 'a' && c <= 'f')
+				d = 16 * d + (c - 'a' + 10);
+			else if (c >= 'A' && c <= 'F')
+				d = 16 * d + (c - 'A' + 10);
 			else 
 				break;
 	}
@@ -29,7 +30,7 @@ int main(int argc, char *argv[])
 	int i = 0;
 	for (int c = 0; i < MAX-1 && (c = getchar()) != EOF && c != 'q'; ++i)
 		if (c == '\n') {
-			printf("%s = %d\n", line, htoi(line));
+			printf("%s = %u\n", line, htoi(line));
 			i = -1;
 		}
 		else
