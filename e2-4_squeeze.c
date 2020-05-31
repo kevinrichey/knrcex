@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include "klib.h"
 
 char *strnchr(const char *s, int c, size_t n)
 {
@@ -22,7 +23,6 @@ void squeeze(char s1[], size_t s1_n, char s2[], size_t s2_n)
 	*s = '\0';
 }
 
-#define arrlen(A_)  (sizeof(A_) / sizeof(A_[0]))
 
 int main(int argc, char *argv[])
 {
