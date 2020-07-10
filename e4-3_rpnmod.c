@@ -61,19 +61,26 @@ double peek(void)
 
 int getop(char s[])
 {
-	int i, c;
+	int c;
 	while ((s[0] = c = getch()) == ' ' || c == '\t')
 		;
 
 	s[1] = '\0';
 
-	if (!isdigit(c) && c != '.')
+	if (!isdigit(c) && c != '.' && c != '-')
 		return c;
 
-	i = 0;
-	if (isdigit(c))
+	if (c == '-') {
+		int p = peek();
+		if (!isdigit(p) && p != '.')
+			return c;
+	}
+
+	int i = 0;
+	if (isdigit(c) || c == '-')
 		while (isdigit(s[++i] = c = getch()))
 			;
+
 	if (c == '.')
 		while (isdigit(s[++i] = c = getch()))
 			;
@@ -84,11 +91,6 @@ int getop(char s[])
 		ungetch(c);
 
 	return NUMBER;
-}
-
-bool dint(double d)
-{
-	return ceil(d) == d;
 }
 
 int main(int argc, char *argv[])
@@ -122,7 +124,7 @@ int main(int argc, char *argv[])
 			case '%':
 				op2 = pop();
 				if (op2 != 0.0)
-					push(pop() % op2);
+					push(fmod(pop(),op2));
 				else
 					error("modulo divide by zero!");
 				break;
